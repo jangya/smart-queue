@@ -1,0 +1,70 @@
+<div class="col-md-6 offset-md-3 mt-5">
+    <div class="card">
+        <h4 class="card-header">Login </h4>
+        <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Email</label>
+                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Email is required</div>
+                        <div *ngIf="f.username.errors.email">Email is not valid</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+                <button [disabled]="loginLoading" class="btn btn-primary">
+                    <span *ngIf="loginLoading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+                <div *ngIf="loginError" class="alert alert-danger mt-3 mb-0">{{loginError}}</div>
+            </form>
+        </div>
+    </div>
+    <small class="text-muted">Don't have an Account? Please <a href="/signup">signup</a></small>
+</div>
+<!--<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="login-card">
+        <mat-card-title align="center">User Login</mat-card-title>
+        <img class="login-image" srcset="assets/svg/undraw_doctor_kw5l.svg" alt="Picture">
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-label>Enter your username</mat-label>
+                        <input matInput placeholder="e.g pitt@example.com" formControlName="username">
+                        <mat-error *ngIf="loginForm.controls['username'].hasError('required')">
+                        Username is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                            Password is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <mat-error *ngIf="error">{{error}}</mat-error>
+            <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+                <mat-icon *ngIf="loading"><mat-spinner color="warn" diameter="20"></mat-spinner></mat-icon>
+                Login
+            </button>
+        </mat-card-actions>
+  </mat-card>
+</form> -->

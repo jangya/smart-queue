@@ -1,0 +1,63 @@
+<!-- <div class="row mt-2">
+    <div class="col-md-12">
+        <small class="text-muted">Showing upto 12 patients out of all active patients</small>
+        <button class="float-right btn btn-sm btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Refresh
+        </button>
+    </div>
+</div> -->
+<table class="table table-hover mt-2" *ngIf="catalogs | async as catalogs; else loadingResults">
+    <thead class="thead-light">
+      <th>Ben ID</th>
+      <th>Name</th>
+      <th>Token</th>
+      <th>Status</th>
+      <th *ngIf="fromSelect">Assignee</th>
+      <th *ngIf="!fromSelect">Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let catalog of catalogs; index as i" [class.table-primary]="selectedCatalogId === catalog.id" 
+        (click)="select(catalog.id)">
+        <td>{{catalog.benId}}</td>
+        <td>{{catalog.name}}</td>
+        <td><span class="badge badge-secondary">{{catalog.token}}</span></td>
+        <td>
+            <span class="badge" [ngClass]="{'badge-primary': catalog.status === 'OPEN', 
+                'badge-warning': catalog.status === 'PROGRESS', 'badge-success': catalog.status === 'RESOLVED'}">
+                {{catalog.status}}
+            </span>
+        </td>
+        <td *ngIf="fromSelect">
+            <span class="badge" [ngClass]=" catalog.status !== 'OPEN' ? catalog.treatedBy === currentUserId ? 'badge-success' : 'badge-danger' : 'badge-secondary'">
+                {{catalog.status !== 'OPEN' ? catalog.treatedBy === currentUserId ? 'Me' : 'Others' : '--NA--'}}
+            </span>
+        </td>
+        <!-- <td *ngIf="fromSelect">
+            <button *ngIf="catalog.status === 'OPEN'" (click)="display(catalog, i)" 
+                class="btn btn-sm btn-outline-primary mr-2" [disabled]="progressCatalog || loading === i+1">
+                <span *ngIf="loading === i+1" class="spinner-border spinner-border-sm mr-1"></span>
+                    Display
+            </button>
+            <button *ngIf="catalog.status === 'PROGRESS'" (click)="resolve(catalog.id)" 
+                class="btn btn-sm btn-outline-success" [disabled]="catalog.treatedBy !== currentUserId">
+                Resolve
+            </button>
+            <button *ngIf="catalog.status === 'RESOLVED'" (click)="delete(catalog.id)" class="btn btn-sm btn-outline-danger">Delete</button>
+        </td> -->
+        <td *ngIf="!fromSelect">
+            <div *ngIf="catalog.status === 'OPEN'; else noPerm">
+                <button (click)="edit(catalog)" class="btn btn-sm btn-outline-primary mr-2" >Edit</button>
+                <button (click)="delete(catalog.id)" class="btn btn-sm btn-outline-danger">Delete</button>
+            </div>
+            <ng-template #noPerm>
+                <span class="badge badge-secondary">--NA--</span>
+            </ng-template>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<ng-template #loadingResults>
+    <span class="spinner-border spinner-border-sm mr-1"></span>
+    Loading Results...
+</ng-template>

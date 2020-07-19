@@ -1,0 +1,31 @@
+// :host-context(body) {
+//     background-color: green;
+//     border: 2px solid green;
+// }
+.body-bg {
+    background-color: #FEE140;
+    background-image: linear-gradient(90deg, #FEE140 0%, #FA709A 100%);
+}
+
+h1 {
+    letter-spacing: 1rem;
+    line-height: unset;
+    font-weight: 800;
+}
+.header {
+    color: red;
+    font-size: 3rem;
+    text-shadow: 2px 2px #0e0d0d;
+    font-family: fantasy;
+}
+.opd {
+    color: red;
+    font-size: 5rem;
+}
+.token {
+    font-size: 7rem;
+    color: blue;
+}
+blockquote {
+    font-size: 3rem;
+}

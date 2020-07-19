@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+
+$theme-colors: (
+  "primary": #6C63FF,
+);
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// body *:not(.display-container){
+//   background-color: green !important;
+// }

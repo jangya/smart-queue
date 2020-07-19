@@ -1,0 +1,62 @@
+<div class="mt-5 text-danger" id="display-container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="/assets/images/cghs_logo.png" class="rounded float-left" alt="CGHS logo">
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center header">
+                WELCOME <br> TO  <br> C.G.H.S WC-2
+            </h1>
+        </div>
+        <div class="col-md-3">
+            <img src="/assets/images/cghs_logo.png" class="rounded float-left" alt="CGHS logo">
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h1 class="text-center opd">OPD 1</h1>
+            <h1 class="text-center token">
+                <span *ngIf="opd1Token | async as opd1Token; else loadingToken1">
+                    {{opd1Token.token}}
+                </span>
+                <ng-template #loadingToken1>
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                </ng-template>
+            </h1>
+        </div>
+        <div class="col-md-6">
+            <h1 class="text-center opd">OPD 2</h1>
+            <h1 class="text-center token">
+                <span *ngIf="opd2Token | async as opd2Token; else loadingToken2">{{opd2Token.token}}</span>
+                <ng-template #loadingToken2>
+                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                </ng-template>
+            </h1>
+        </div>
+    </div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide mt-5" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <!-- <img class="d-block w-100 h-25" src="assets/images/social-distance.jpg" alt="First slide"> -->
+            <!-- <h1 class="d-inline ml-5">Corona safety Rules</h1> -->
+            <blockquote class="blockquote text-center">
+                <p class="mb-0">Wash your hands..</p>
+                <footer class="blockquote-footer"><cite title="Source Title">Corona safety rule</cite></footer>
+            </blockquote>
+            </div>
+            <div class="carousel-item">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">Keep Social distance..</p>
+                    <footer class="blockquote-footer"><cite title="Source Title">Corona safety rule</cite></footer>
+                </blockquote>
+            </div>
+            <div class="carousel-item">
+                <blockquote class="blockquote text-center">
+                    <p class="mb-0">Wear masks..</p>
+                    <footer class="blockquote-footer"><cite title="Source Title">Corona safety rule</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+        </div>
+</div>
+
